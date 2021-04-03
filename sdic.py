@@ -20,7 +20,7 @@ class sdic:
 
     def fit(self,datain):
         """
-        datain: a numpy array of shape n_samples x n_features
+        datain: a numpy array of shape n_samples x n_features (n_samples x n_features!!)
         """
         datain=datain.reshape((datain.shape[0],-1))
         self.corrmatrix=np.corrcoef(datain.transpose())
@@ -28,7 +28,7 @@ class sdic:
 
     def transform(self,datain):
         """
-        datain: a numpy array of shape n_samples x n_features
+        datain: a numpy array of shape n_samples x n_features (n_samples x n_features!!)
         """
         if self.sdic_type==SDIC_TYPE_SDIC_C:
             return self.transform_SDIC_C(datain)
