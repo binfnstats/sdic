@@ -60,7 +60,20 @@ class sdic:
                 dx=np.nanargmax(corrmatrix[dx,:])
             except:
                 break
-            if np.all(np.isnan(corrmatrix[dx,:])): break
+            if np.all(np.isnan(corrmatrix[dx,:])):
+                if dir==1: cx+=1
+                else: cx-=1
+                if cx==img_size:
+                    cy+=1
+                    cx-=1
+                    dir*=-1
+                elif cx==-1:
+                    cy+=1
+                    cx+=1
+                    dir*=-1
+                if cy==img_size: break
+                dataout[:,cy,cx]=datain[:,dx]
+                break
             corrmatrix[dxp,:]=np.nan
             if np.nanmax(corrmatrix[dx,:])<=0:
                 dx=np.unravel_index(np.nanargmax(corrmatrix),corrmatrix.shape)[0]
